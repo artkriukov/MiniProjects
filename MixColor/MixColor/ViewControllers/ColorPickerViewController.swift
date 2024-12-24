@@ -7,7 +7,17 @@
 
 import UIKit
 
-class ColorPickerViewController: UIViewController {
+final class ColorPickerViewController: UIViewController {
+    @IBOutlet private weak var colorView: UIView!
+    
+    @IBOutlet private weak var redValueLabel: UILabel!
+    @IBOutlet private weak var greenValueLabel: UILabel!
+    @IBOutlet private weak var blueValueLabel: UILabel!
+    
+    @IBOutlet weak var redSliderValue: UISlider!
+    @IBOutlet weak var greenSliderValue: UISlider!
+    @IBOutlet weak var blueSliderValue: UISlider!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -15,5 +25,7 @@ class ColorPickerViewController: UIViewController {
     }
 
 
+    @IBAction func sliderValueChanged(_ sender: UISlider) {
+    }
 }
 

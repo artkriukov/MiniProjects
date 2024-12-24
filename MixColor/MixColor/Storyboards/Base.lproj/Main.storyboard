@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Welcome View Controller-->
         <scene sceneID="pIh-0P-Duj">
             <objects>
-                <viewController id="C38-yP-QkX" sceneMemberID="viewController">
+                <viewController id="C38-yP-QkX" customClass="WelcomeViewController" customModule="MixColor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HPX-au-ahE">
                         <rect key="frame" x="0.0" y="0.0" width="440" height="956"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -23,12 +23,20 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello, \(username)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lnr-5J-R8D">
+                                <rect key="frame" x="132.66666666666666" y="244" width="174.99999999999997" height="40"/>
+                                <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ZJx-di-oKc"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="NYU-fe-aTt" firstAttribute="centerX" secondItem="HPX-au-ahE" secondAttribute="centerX" id="DlM-WO-PZd"/>
+                            <constraint firstItem="Lnr-5J-R8D" firstAttribute="centerX" secondItem="HPX-au-ahE" secondAttribute="centerX" id="ExR-Rd-eWp"/>
                             <constraint firstItem="NYU-fe-aTt" firstAttribute="centerY" secondItem="HPX-au-ahE" secondAttribute="centerY" id="SAr-nm-k2a"/>
+                            <constraint firstItem="Lnr-5J-R8D" firstAttribute="top" secondItem="ZJx-di-oKc" secondAttribute="top" constant="200" id="YCk-eG-yJr"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="lgQ-Fi-c61">
@@ -38,6 +46,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="userName" destination="Lnr-5J-R8D" id="ywe-Vc-KMf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="63h-wk-7IU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -57,6 +68,11 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="130" id="udt-3G-u0l"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="dbf-Ed-v9j">
                                 <rect key="frame" x="16" y="264" width="408" height="130"/>
@@ -119,6 +135,9 @@
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="VQw-UO-NCf">
                                                 <rect key="frame" x="-2" y="0.0" width="272" height="31"/>
                                                 <color key="minimumTrackTintColor" red="0.9935871959" green="0.001699901652" blue="0.2256049514" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <connections>
+                                                    <action selector="sliderValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="art-bP-Iaw"/>
+                                                </connections>
                                             </slider>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="HEN-ye-EKn">
                                                 <rect key="frame" x="-2" y="40" width="272" height="31"/>
@@ -148,6 +167,15 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="pP3-NK-tbh"/>
+                    <connections>
+                        <outlet property="blueSliderValue" destination="CqD-gG-Fij" id="N8p-2w-rWK"/>
+                        <outlet property="blueValueLabel" destination="BI0-3Z-O3C" id="0zX-XT-oq7"/>
+                        <outlet property="colorView" destination="tZ4-Gt-Uu3" id="0Yx-fE-QmK"/>
+                        <outlet property="greenSliderValue" destination="HEN-ye-EKn" id="OXZ-lF-6hx"/>
+                        <outlet property="greenValueLabel" destination="EID-f0-rW9" id="T8M-8p-2wa"/>
+                        <outlet property="redSliderValue" destination="VQw-UO-NCf" id="BvL-7a-jPg"/>
+                        <outlet property="redValueLabel" destination="nJV-vj-eTp" id="Rr4-zQ-ze6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -177,7 +205,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kti-8D-Q8c">
                                         <rect key="frame" x="0.0" y="108" width="286" height="34.333333333333343"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Log In"/>
                                         <connections>
                                             <segue destination="1kf-aE-xYS" kind="presentation" modalPresentationStyle="fullScreen" id="8Ew-k6-5Rh"/>
                                         </connections>
@@ -189,11 +217,17 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="133" height="30"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" title="Forgot User Name?"/>
+                                                <connections>
+                                                    <action selector="forgotRegisterData:" destination="zj4-Hk-6HL" eventType="touchUpInside" id="y2E-SK-f8c"/>
+                                                </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EwE-fO-xaj">
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EwE-fO-xaj">
                                                 <rect key="frame" x="153" y="0.0" width="133" height="30"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" title="Forgot Password?"/>
+                                                <connections>
+                                                    <action selector="forgotRegisterData:" destination="zj4-Hk-6HL" eventType="touchUpInside" id="o6W-iU-L65"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -215,6 +249,10 @@
                             <constraint firstItem="LtG-Cm-F9i" firstAttribute="centerX" secondItem="0yl-jT-IoH" secondAttribute="centerX" id="fa7-ah-zJc"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="passwordTF" destination="hlx-Va-dvE" id="UxO-RL-zto"/>
+                        <outlet property="userNameTF" destination="bgP-ze-bhD" id="Q4L-SO-e4v"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2s5-iu-RXh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
