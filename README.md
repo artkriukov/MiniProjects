@@ -1,1 +1,1 @@
-# MiniProjects
+.DS_Store
